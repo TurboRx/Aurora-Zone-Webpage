@@ -69,11 +69,21 @@ nav a {
   padding: 10px 15px;
   color: var(--text);
   font-weight: bold;
+
+  /* Added for smooth and fast clicks */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 nav a:hover {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 4px;
+}
+
+nav a:active {
+  background-color: rgba(0, 0, 0, 0.15);
+  transition-duration: 0.1s;
 }
 
 main section {
@@ -100,10 +110,8 @@ ul {
 .credit-box h3 {
   margin: 0;
   font-size: 1.3rem;
-  /* Default color removed */
 }
 
-/* Custom name color */
 .custom-name {
   color: #f01e2c;
 }
