@@ -1,1 +1,111 @@
-
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<div class="page-wrapper">
+  <header>
+    <h1>Aurora Zone</h1>
+    <p class="subtitle">
+      Official Website of the Aurora Zone Room on 
+      <a href="https://dawn.psim.us/" target="_blank">Dawn</a>.
+    </p>
+  </header>
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <label for="themeMode">Theme:</label>
+    <select id="themeMode" onchange="setTheme(this.value)">
+      <option value="auto">Auto</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+    <span class="material-icons" id="themeIcon">brightness_auto</span>
+  </div>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showSection('home')"><span class="material-icons">home</span> Home</a></li>
+      <li><a href="#" onclick="showSection('rules')"><span class="material-icons">gavel</span> Rules</a></li>
+      <li><a href="#" onclick="showSection('staff')"><span class="material-icons">group</span> Staff</a></li>
+      <li><a href="#" onclick="showSection('events')"><span class="material-icons">event</span> Events</a></li>
+      <li><a href="#" onclick="showSection('contact')"><span class="material-icons">email</span> Contact</a></li>
+      <li><a href="#" onclick="showSection('credits')"><span class="material-icons">code</span> Credits</a></li>
+    </ul>
+  </nav>
+  <!-- Main Sections -->
+  <main>
+    <section id="home" class="active">
+      <h2>Welcome</h2>
+      <p>The Aurora Zone is a Chat Room in <a href="https://dawn.psim.us/" target="_blank">Dawn</a>. This is our official information website.</p>
+    </section>
+    <section id="rules">
+      <h2>Room Rules</h2>
+      <ul>
+        <li>Be respectful to all users.</li>
+        <li>Follow all <a href="https://dawn.psim.us/" target="_blank">Dawn</a> guidelines.</li>
+        <li>No spamming or advertising.</li>
+        <li>Keep the discussion friendly and appropriate.</li>
+      </ul>
+    </section>
+    <section id="staff">
+      <h2>Staff</h2>
+      <div class="staff-rank">
+        <h3>Founder (#)</h3>
+        <div class="card">xerneasbrothers</div>
+      </div>
+      <div class="staff-rank">
+        <h3>Room Owners (#)</h3>
+        <div class="card">arsras</div>
+        <div class="card">demonofocean</div>
+        <div class="card">turborx</div>
+        <div class="card">xerneasbrothers</div>
+      </div>
+      <div class="staff-rank">
+        <h3>Leaders (&)</h3>
+        <div class="card">arpitraj1</div>
+        <div class="card">doubledgedsword</div>
+        <div class="card">marcodiazz</div>
+        <div class="card">murphylawden</div>
+      </div>
+      <div class="staff-rank">
+        <h3>Bots (*)</h3>
+        <div class="card">brothersbot</div>
+        <div class="card">tortbot</div>
+        <div class="card">turbosprototype</div>
+      </div>
+      <div class="staff-rank">
+        <h3>Drivers (%)</h3>
+        <div class="card">dmpenguin</div>
+        <div class="card">rosetheponyta</div>
+      </div>
+      <div class="staff-rank">
+        <h3>Operators ($)</h3>
+        <div class="card">shivay</div>
+        <div class="card">unknownentity303</div>
+      </div>
+      <div class="staff-rank">
+        <h3>Voices (+)</h3>
+        <div class="card">kurayami0222</div>
+      </div>
+    </section>
+    <section id="events">
+      <h2>Upcoming Events</h2>
+      <p>Stay tuned! Event announcements will appear here soon.</p>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Visit us at <a href="https://dawn.psim.us/aurorazone" target="_blank">dawn.psim.us/aurorazone</a></p>
+    </section>
+    <section id="credits">
+      <h2>Credits</h2>
+      <div class="credit-box">
+        <h3>TurboRx</h3>
+        <p class="credit-role-badges">
+          <span class="badge role-dev">Lead Developer</span>
+          <span class="badge role-maintainer">Maintainer</span>
+        </p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© <span id="year"></span> Aurora Zone. All rights reserved.</p>
+  </footer>
+      </div>
+     
