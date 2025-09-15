@@ -89,60 +89,6 @@ ul {
   padding-left: 20px;
 }
 
-.staff-rank {
-  margin-bottom: 30px;
-}
-
-.staff-rank h3 {
-  color: var(--accent);
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.card {
-  display: inline-block;
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: var(--card);
-  border-radius: 6px;
-  font-weight: bold;
-  color: var(--text);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-}
-
-footer {
-  text-align: center;
-  margin-top: 40px;
-  padding-top: 10px;
-  border-top: 1px solid #ccc;
-  font-size: 0.9rem;
-  color: #888;
-}
-
-.theme-toggle {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-}
-
-.theme-toggle select {
-  background-color: var(--card);
-  color: var(--text);
-  border: 1px solid #666;
-  border-radius: 4px;
-  padding: 4px 8px;
-}
-
-.material-icons {
-  vertical-align: middle;
-  font-size: 20px;
-  pointer-events: none;
-}
-
-/* Credits Section */
 .credit-box {
   background-color: var(--card);
   border-radius: 8px;
@@ -154,7 +100,12 @@ footer {
 .credit-box h3 {
   margin: 0;
   font-size: 1.3rem;
-  color: var(--accent);
+  /* Default color removed */
+}
+
+/* Custom name color */
+.custom-name {
+  color: #f01e2c;
 }
 
 .credit-role-badges {
