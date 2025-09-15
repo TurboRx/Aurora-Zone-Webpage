@@ -1,1 +1,181 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --card: #f4f6fc;
+  --accent: #2233aa;
+}
 
+body.dark {
+  --bg: #0a0f2c;
+  --text: #e0e6ff;
+  --card: #223377;
+  --accent: #9ed0ff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.page-wrapper {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: var(--accent);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  background-color: var(--card);
+  margin: 20px 0;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 15px;
+  color: var(--text);
+  font-weight: bold;
+}
+
+nav a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+main section {
+  display: none;
+  margin-top: 20px;
+}
+
+main section.active {
+  display: block;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.staff-rank {
+  margin-bottom: 30px;
+}
+
+.staff-rank h3 {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.card {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: var(--card);
+  border-radius: 6px;
+  font-weight: bold;
+  color: var(--text);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.theme-toggle select {
+  background-color: var(--card);
+  color: var(--text);
+  border: 1px solid #666;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.material-icons {
+  vertical-align: middle;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+/* Credits Section */
+.credit-box {
+  background-color: var(--card);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+.credit-box h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.credit-role-badges {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: white;
+  background-color: #999;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.role-dev {
+  background-color: #9b59b6;
+}
+
+.role-maintainer {
+  background-color: #3498db;
+}
