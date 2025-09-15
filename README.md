@@ -13,7 +13,6 @@ The website provides information about the Aurora Zone room, including:
 
 - Welcome message
 - Room rules
-- Staff list and roles
 - Upcoming events
 - Contact details
 - Credits
