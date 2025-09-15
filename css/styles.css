@@ -57,6 +57,7 @@ nav ul {
   border-radius: 8px;
   flex-wrap: wrap;
 }
+
 nav li {
   margin: 0 10px;
 }
@@ -97,6 +98,7 @@ ul {
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
+
 .card {
   display: inline-block;
   margin: 5px;
@@ -161,6 +163,7 @@ footer {
   margin-top: 8px;
   flex-wrap: wrap;
 }
+
 .badge {
   display: inline-block;
   padding: 4px 10px;
@@ -178,4 +181,20 @@ footer {
 
 .role-maintainer {
   background-color: #3498db;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px; /* Smaller font on mobile */
+  }
+
+  .page-wrapper {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  nav ul {
+    flex-wrap: wrap; /* Wrap nav items */
+  }
 }
