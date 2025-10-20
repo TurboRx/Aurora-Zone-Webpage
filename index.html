@@ -2,12 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1, user-scalable=yes" />
-  <title>Aurora Zone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aurora Zone - Official website of the Aurora Zone chat room on Dawn Pokemon Showdown. Join our friendly community for Pokemon battles and discussions." />
+  <meta name="keywords" content="Aurora Zone, Dawn, Pokemon Showdown, Pokemon battles, chat room, Pokemon community" />
+  <meta name="author" content="TurboRx" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Aurora Zone - Pokemon Community" />
+  <meta property="og:description" content="Official website of the Aurora Zone chat room on Dawn Pokemon Showdown. Join our friendly community!" />
+  <meta property="og:url" content="https://turborx.github.io/Aurora-Zone-Webpage/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aurora Zone" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Aurora Zone - Pokemon Community" />
+  <meta name="twitter:description" content="Official website of the Aurora Zone chat room on Dawn Pokemon Showdown." />
+  
+  <title>Aurora Zone - Pokemon Community on Dawn</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>" />
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="css/styles.css" as="style" />
+  <link rel="preload" href="js/scripts.js" as="script" />
+  
   <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!-- Link to external CSS -->
   <link rel="stylesheet" href="css/styles.css" />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Aurora Zone",
+    "description": "Pokemon community chat room on Dawn Pokemon Showdown",
+    "url": "https://turborx.github.io/Aurora-Zone-Webpage/",
+    "logo": "https://turborx.github.io/Aurora-Zone-Webpage/favicon.ico",
+    "sameAs": ["https://dawn.psim.us/aurorazone"]
+  }
+  </script>
 </head>
 <body>
   <div class="page-wrapper">
@@ -15,67 +52,124 @@
       <h1>Aurora Zone</h1>
       <p class="subtitle">
         Official Website of the Aurora Zone Room on 
-        <a href="https://dawn.psim.us/" target="_blank">Dawn</a>.
+        <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown (opens in new tab)">Dawn</a>.
       </p>
     </header>
 
-    <!-- Theme Toggle restored here -->
-    <div class="theme-toggle">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" role="region" aria-label="Theme selection">
       <label for="themeMode">Theme:</label>
-      <select id="themeMode" onchange="setTheme(this.value)">
+      <select id="themeMode" onchange="setTheme(this.value)" aria-describedby="theme-help">
         <option value="auto">Auto</option>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
       </select>
-      <span class="material-icons" id="themeIcon">brightness_auto</span>
+      <span class="material-icons" id="themeIcon" aria-hidden="true">brightness_auto</span>
+      <span id="theme-help" class="sr-only">Choose your preferred color theme</span>
     </div>
 
-    <nav>
+    <nav role="navigation" aria-label="Main navigation">
       <ul>
-        <li><a href="#" onclick="showSection('home')"><span class="material-icons">home</span> Home</a></li>
-        <li><a href="#" onclick="showSection('rules')"><span class="material-icons">gavel</span> Rules</a></li>
-        <li><a href="#" onclick="showSection('events')"><span class="material-icons">event</span> Events</a></li>
-        <li><a href="#" onclick="showSection('contact')"><span class="material-icons">email</span> Contact</a></li>
-        <li><a href="#" onclick="showSection('credits')"><span class="material-icons">code</span> Credits</a></li>
+        <li><a href="#home" onclick="showSection('home')" aria-current="page" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">home</span> Home</a></li>
+        <li><a href="#rules" onclick="showSection('rules')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">gavel</span> Rules</a></li>
+        <li><a href="#events" onclick="showSection('events')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">event</span> Events</a></li>
+        <li><a href="#contact" onclick="showSection('contact')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">email</span> Contact</a></li>
+        <li><a href="#credits" onclick="showSection('credits')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">code</span> Credits</a></li>
       </ul>
     </nav>
 
-    <main>
-      <section id="home" class="active">
-        <h2>Welcome</h2>
-        <p>The Aurora Zone is a Chat Room in <a href="https://dawn.psim.us/" target="_blank">Dawn</a>. This is our official information website.</p>
+    <main role="main">
+      <section id="home" class="active" aria-labelledby="home-title">
+        <h2 id="home-title">Welcome to Aurora Zone</h2>
+        <p>The Aurora Zone is a vibrant Chat Room in <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown (opens in new tab)">Dawn</a> where Pokemon enthusiasts gather to battle, discuss strategies, and build friendships. This is our official information website.</p>
+        <div class="feature-highlights">
+          <div class="feature-card">
+            <span class="material-icons">group</span>
+            <h3>Friendly Community</h3>
+            <p>Join our welcoming community of Pokemon trainers</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-icons">sports_esports</span>
+            <h3>Pokemon Battles</h3>
+            <p>Engage in exciting Pokemon battles and tournaments</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-icons">chat</span>
+            <h3>Active Discussions</h3>
+            <p>Participate in lively Pokemon strategy discussions</p>
+          </div>
+        </div>
       </section>
-      <section id="rules">
-        <h2>Room Rules</h2>
-        <ul>
-          <li>Be respectful to all users.</li>
-          <li>Follow all <a href="https://dawn.psim.us/" target="_blank">Dawn</a> guidelines.</li>
-          <li>No spamming or advertising.</li>
-          <li>Keep the discussion friendly and appropriate.</li>
+      
+      <section id="rules" aria-labelledby="rules-title">
+        <h2 id="rules-title">Room Rules</h2>
+        <ul role="list">
+          <li>Be respectful and kind to all users in the community</li>
+          <li>Follow all <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown guidelines (opens in new tab)">Dawn</a> server guidelines and policies</li>
+          <li>No spamming, excessive caps, or unauthorized advertising</li>
+          <li>Keep discussions friendly, appropriate, and Pokemon-related</li>
+          <li>Use English as the primary language for communication</li>
+          <li>Report any issues to room moderators promptly</li>
         </ul>
       </section>
-      <section id="events">
-        <h2>Upcoming Events</h2>
-        <p>Stay tuned! Event announcements will appear here soon.</p>
+      
+      <section id="events" aria-labelledby="events-title">
+        <h2 id="events-title">Upcoming Events</h2>
+        <div class="events-container">
+          <div class="event-card">
+            <span class="material-icons">schedule</span>
+            <h3>Weekly Tournaments</h3>
+            <p>Join our weekly Pokemon tournaments every Saturday at 8 PM UTC</p>
+          </div>
+          <div class="event-card">
+            <span class="material-icons">celebration</span>
+            <h3>Special Events</h3>
+            <p>Stay tuned for special themed events and celebrations throughout the month</p>
+          </div>
+        </div>
+        <p class="events-notice">More event announcements will appear here soon. Follow our room for updates!</p>
       </section>
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>Visit us at <a href="https://dawn.psim.us/aurorazone" target="_blank">dawn.psim.us/aurorazone</a></p>
+      
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact & Links</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="material-icons">public</span>
+            <div>
+              <h3>Visit Our Room</h3>
+              <p>Join us at <a href="https://dawn.psim.us/aurorazone" target="_blank" rel="noopener noreferrer" aria-label="Join Aurora Zone room on Dawn (opens in new tab)">dawn.psim.us/aurorazone</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="material-icons">info</span>
+            <div>
+              <h3>Dawn Pokemon Showdown</h3>
+              <p>Main server: <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown main page (opens in new tab)">dawn.psim.us</a></p>
+            </div>
+          </div>
+        </div>
       </section>
-      <section id="credits">
-        <h2>Credits</h2>
+      
+      <section id="credits" aria-labelledby="credits-title">
+        <h2 id="credits-title">Credits & Contributors</h2>
         <div class="credit-box">
           <h3 class="custom-name">TurboRx</h3>
           <p class="credit-role-badges">
-            <span class="badge role-dev">Lead Developer</span>
-            <span class="badge role-maintainer">Maintainer</span>
+            <span class="badge role-dev" role="img" aria-label="Lead Developer">Lead Developer</span>
+            <span class="badge role-maintainer" role="img" aria-label="Project Maintainer">Maintainer</span>
           </p>
+          <p class="credit-description">Creator and maintainer of the Aurora Zone website and community initiatives.</p>
+        </div>
+        <div class="acknowledgments">
+          <h3>Special Thanks</h3>
+          <p>Thanks to the Dawn Pokemon Showdown community and all Aurora Zone members who make our room a welcoming place for Pokemon enthusiasts.</p>
         </div>
       </section>
     </main>
 
-    <footer>
-      <p>© <span id="year"></span> Aurora Zone. All rights reserved.</p>
+    <footer role="contentinfo">
+      <p>© <span id="year" aria-live="polite">2025</span> Aurora Zone. All rights reserved. | 
+      <a href="https://github.com/TurboRx/Aurora-Zone-Webpage" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub (opens in new tab)">View Source</a></p>
     </footer>
   </div>
   <!-- Link to external JS -->
