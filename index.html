@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Aurora Zone - Official website of the Aurora Zone chat room on Dawn Pokemon Showdown. Join our friendly community for Pokemon battles and discussions." />
-  <meta name="keywords" content="Aurora Zone, Dawn, Pokemon Showdown, Pokemon battles, chat room, Pokemon community" />
+  <meta name="keywords" content="Aurora Zone, Dawn, Pokemon Showdown, Pokemon battles, chat room, Pokemon community, tournaments, competitive pokemon" />
   <meta name="author" content="TurboRx" />
   
   <!-- Open Graph Meta Tags -->
@@ -28,6 +28,11 @@
   <link rel="preload" href="css/styles.css" as="style" />
   <link rel="preload" href="js/scripts.js" as="script" />
   
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
   <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!-- Link to external CSS -->
@@ -47,13 +52,58 @@
   </script>
 </head>
 <body>
+  <!-- Particle Background -->
+  <div id="particles-container"></div>
+  
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="pokeball-loader">
+      <div class="pokeball">
+        <div class="pokeball-top"></div>
+        <div class="pokeball-middle"></div>
+        <div class="pokeball-bottom"></div>
+        <div class="pokeball-center"></div>
+      </div>
+    </div>
+    <p class="loading-text">Loading Aurora Zone...</p>
+  </div>
+
+  <!-- Music Toggle -->
+  <div class="music-toggle" id="musicToggle" title="Toggle Background Music">
+    <span class="material-icons" id="musicIcon">music_off</span>
+    <audio id="bgMusic" loop>
+      <source src="https://www.soundjay.com/misc/sounds-of-nature/ambient-nature-sounds-01.wav" type="audio/wav">
+    </audio>
+  </div>
+
   <div class="page-wrapper">
     <header>
-      <h1>Aurora Zone</h1>
-      <p class="subtitle">
-        Official Website of the Aurora Zone Room on 
-        <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown (opens in new tab)">Dawn</a>.
-      </p>
+      <div class="header-content">
+        <div class="logo-container">
+          <div class="rotating-logo">🌟</div>
+          <h1 class="glitch-text">Aurora Zone</h1>
+        </div>
+        <p class="subtitle typing-text">
+          Official Website of the Aurora Zone Room on 
+          <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown (opens in new tab)">Dawn</a>.
+        </p>
+        
+        <!-- Live Stats -->
+        <div class="live-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="onlineCount">42</span>
+            <span class="stat-label">Online Trainers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="battlesCount">18</span>
+            <span class="stat-label">Active Battles</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="membersCount">1,337</span>
+            <span class="stat-label">Total Members</span>
+          </div>
+        </div>
+      </div>
     </header>
 
     <!-- Theme Toggle -->
@@ -63,6 +113,7 @@
         <option value="auto">Auto</option>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
+        <option value="aurora">Aurora</option>
       </select>
       <span class="material-icons" id="themeIcon" aria-hidden="true">brightness_auto</span>
       <span id="theme-help" class="sr-only">Choose your preferred color theme</span>
@@ -70,108 +121,500 @@
 
     <nav role="navigation" aria-label="Main navigation">
       <ul>
-        <li><a href="#home" onclick="showSection('home')" aria-current="page" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">home</span> Home</a></li>
-        <li><a href="#rules" onclick="showSection('rules')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">gavel</span> Rules</a></li>
-        <li><a href="#events" onclick="showSection('events')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">event</span> Events</a></li>
-        <li><a href="#contact" onclick="showSection('contact')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">email</span> Contact</a></li>
-        <li><a href="#credits" onclick="showSection('credits')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">code</span> Credits</a></li>
+        <li><a href="#home" onclick="showSection('home')" aria-current="page" role="button" tabindex="0" data-section="home"><span class="material-icons" aria-hidden="true">home</span> Home</a></li>
+        <li><a href="#pokemon" onclick="showSection('pokemon')" role="button" tabindex="0" data-section="pokemon"><span class="material-icons" aria-hidden="true">catching_pokemon</span> Pokemon</a></li>
+        <li><a href="#battles" onclick="showSection('battles')" role="button" tabindex="0" data-section="battles"><span class="material-icons" aria-hidden="true">sports_mma</span> Battles</a></li>
+        <li><a href="#leaderboard" onclick="showSection('leaderboard')" role="button" tabindex="0" data-section="leaderboard"><span class="material-icons" aria-hidden="true">leaderboard</span> Leaderboard</a></li>
+        <li><a href="#events" onclick="showSection('events')" role="button" tabindex="0" data-section="events"><span class="material-icons" aria-hidden="true">event</span> Events</a></li>
+        <li><a href="#games" onclick="showSection('games')" role="button" tabindex="0" data-section="games"><span class="material-icons" aria-hidden="true">games</span> Games</a></li>
+        <li><a href="#rules" onclick="showSection('rules')" role="button" tabindex="0" data-section="rules"><span class="material-icons" aria-hidden="true">gavel</span> Rules</a></li>
+        <li><a href="#contact" onclick="showSection('contact')" role="button" tabindex="0" data-section="contact"><span class="material-icons" aria-hidden="true">email</span> Contact</a></li>
+        <li><a href="#credits" onclick="showSection('credits')" role="button" tabindex="0" data-section="credits"><span class="material-icons" aria-hidden="true">code</span> Credits</a></li>
       </ul>
     </nav>
 
     <main role="main">
+      <!-- Home Section -->
       <section id="home" class="active" aria-labelledby="home-title">
         <h2 id="home-title">Welcome to Aurora Zone</h2>
-        <p>The Aurora Zone is a vibrant Chat Room in <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown (opens in new tab)">Dawn</a> where Pokemon enthusiasts gather to battle, discuss strategies, and build friendships. This is our official information website.</p>
+        <p>The Aurora Zone is a vibrant Chat Room in <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer">Dawn</a> where Pokemon enthusiasts gather to battle, discuss strategies, and build friendships. Join our legendary community!</p>
+        
+        <!-- Interactive Welcome Card -->
+        <div class="welcome-card">
+          <div class="pokemon-silhouette"></div>
+          <h3>Ready to become a Pokemon Master?</h3>
+          <button class="cta-button" onclick="showSection('battles')">
+            <span class="material-icons">flash_on</span>
+            Start Your Journey
+          </button>
+        </div>
+
         <div class="feature-highlights">
-          <div class="feature-card">
-            <span class="material-icons">group</span>
+          <div class="feature-card" data-aos="fade-up">
+            <div class="card-icon">👥</div>
             <h3>Friendly Community</h3>
             <p>Join our welcoming community of Pokemon trainers</p>
+            <div class="card-stats">1,337+ Members</div>
           </div>
-          <div class="feature-card">
-            <span class="material-icons">sports_esports</span>
-            <h3>Pokemon Battles</h3>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon">⚔️</div>
+            <h3>Epic Battles</h3>
             <p>Engage in exciting Pokemon battles and tournaments</p>
+            <div class="card-stats">50+ Daily Battles</div>
           </div>
-          <div class="feature-card">
-            <span class="material-icons">chat</span>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-icon">💬</div>
             <h3>Active Discussions</h3>
             <p>Participate in lively Pokemon strategy discussions</p>
+            <div class="card-stats">24/7 Chat Active</div>
+          </div>
+        </div>
+
+        <!-- Daily Pokemon Showcase -->
+        <div class="daily-pokemon" data-aos="fade-up">
+          <h3>🌟 Pokemon of the Day</h3>
+          <div class="pokemon-showcase" id="dailyPokemon">
+            <div class="pokemon-card">
+              <div class="pokemon-image">
+                <div class="shiny-effect"></div>
+                <span class="pokemon-sprite">⚡</span>
+              </div>
+              <div class="pokemon-info">
+                <h4 id="pokemonName">Pikachu</h4>
+                <p class="pokemon-type">Electric Type</p>
+                <div class="pokemon-stats">
+                  <span class="stat">HP: 35</span>
+                  <span class="stat">ATK: 55</span>
+                  <span class="stat">DEF: 40</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      
-      <section id="rules" aria-labelledby="rules-title">
-        <h2 id="rules-title">Room Rules</h2>
-        <ul role="list">
-          <li>Be respectful and kind to all users in the community</li>
-          <li>Follow all <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown guidelines (opens in new tab)">Dawn</a> server guidelines and policies</li>
-          <li>No spamming, excessive caps, or unauthorized advertising</li>
-          <li>Keep discussions friendly, appropriate, and Pokemon-related</li>
-          <li>Use English as the primary language for communication</li>
-          <li>Report any issues to room moderators promptly</li>
-        </ul>
+
+      <!-- Pokemon Section -->
+      <section id="pokemon" aria-labelledby="pokemon-title">
+        <h2 id="pokemon-title">Pokemon Collection</h2>
+        
+        <!-- Pokemon Type Filter -->
+        <div class="type-filter">
+          <button class="type-btn active" onclick="filterPokemon('all')">All</button>
+          <button class="type-btn fire-type" onclick="filterPokemon('fire')">Fire</button>
+          <button class="type-btn water-type" onclick="filterPokemon('water')">Water</button>
+          <button class="type-btn grass-type" onclick="filterPokemon('grass')">Grass</button>
+          <button class="type-btn electric-type" onclick="filterPokemon('electric')">Electric</button>
+          <button class="type-btn psychic-type" onclick="filterPokemon('psychic')">Psychic</button>
+          <button class="type-btn dark-type" onclick="filterPokemon('dark')">Dark</button>
+        </div>
+
+        <div class="pokemon-grid" id="pokemonGrid">
+          <!-- Pokemon cards will be dynamically generated -->
+        </div>
       </section>
-      
+
+      <!-- Battle Simulator Section -->
+      <section id="battles" aria-labelledby="battles-title">
+        <h2 id="battles-title">Battle Simulator</h2>
+        
+        <div class="battle-arena">
+          <div class="battlefield">
+            <div class="pokemon-slot player1">
+              <div class="pokemon-avatar" id="player1Pokemon">
+                <span class="pokemon-emoji">🔥</span>
+                <div class="hp-bar">
+                  <div class="hp-fill" style="width: 100%"></div>
+                </div>
+                <span class="pokemon-level">Lv. 50</span>
+              </div>
+            </div>
+            
+            <div class="vs-indicator">
+              <span class="vs-text">VS</span>
+              <div class="lightning-effect"></div>
+            </div>
+            
+            <div class="pokemon-slot player2">
+              <div class="pokemon-avatar" id="player2Pokemon">
+                <span class="pokemon-emoji">💧</span>
+                <div class="hp-bar">
+                  <div class="hp-fill" style="width: 100%"></div>
+                </div>
+                <span class="pokemon-level">Lv. 50</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="battle-controls">
+            <button class="battle-btn" onclick="simulateBattle()">
+              <span class="material-icons">flash_on</span>
+              Start Battle!
+            </button>
+            <button class="battle-btn secondary" onclick="randomizePokemon()">
+              <span class="material-icons">shuffle</span>
+              Random Pokemon
+            </button>
+          </div>
+        </div>
+
+        <div class="battle-log" id="battleLog">
+          <h4>Battle Log</h4>
+          <div class="log-content" id="logContent">
+            <p>Select Pokemon and start a battle!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leaderboard Section -->
+      <section id="leaderboard" aria-labelledby="leaderboard-title">
+        <h2 id="leaderboard-title">🏆 Champion Leaderboard</h2>
+        
+        <div class="leaderboard-filters">
+          <button class="filter-btn active" onclick="filterLeaderboard('weekly')">Weekly</button>
+          <button class="filter-btn" onclick="filterLeaderboard('monthly')">Monthly</button>
+          <button class="filter-btn" onclick="filterLeaderboard('alltime')">All Time</button>
+        </div>
+
+        <div class="leaderboard-container">
+          <div class="podium">
+            <div class="podium-place second">
+              <div class="trainer-avatar">🥈</div>
+              <h4>PokeChamp99</h4>
+              <p>1,847 ELO</p>
+            </div>
+            <div class="podium-place first">
+              <div class="trainer-avatar champion">👑</div>
+              <h4>MasterTrainer</h4>
+              <p>2,156 ELO</p>
+            </div>
+            <div class="podium-place third">
+              <div class="trainer-avatar">🥉</div>
+              <h4>EliteFour_Dawn</h4>
+              <p>1,634 ELO</p>
+            </div>
+          </div>
+
+          <div class="leaderboard-list">
+            <div class="leaderboard-item">
+              <span class="rank">4</span>
+              <div class="trainer-info">
+                <span class="trainer-name">GymLeader_Brock</span>
+                <span class="trainer-badges">⭐⭐⭐</span>
+              </div>
+              <span class="elo">1,523</span>
+            </div>
+            <div class="leaderboard-item">
+              <span class="rank">5</span>
+              <div class="trainer-info">
+                <span class="trainer-name">TeamRocket_Jessie</span>
+                <span class="trainer-badges">⭐⭐</span>
+              </div>
+              <span class="elo">1,445</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Events Section -->
       <section id="events" aria-labelledby="events-title">
-        <h2 id="events-title">Upcoming Events</h2>
+        <h2 id="events-title">🎉 Upcoming Events</h2>
+        
+        <!-- Event Countdown -->
+        <div class="event-countdown" data-aos="zoom-in">
+          <h3>Next Tournament</h3>
+          <div class="countdown" id="eventCountdown">
+            <div class="time-unit">
+              <span class="time-value" id="days">07</span>
+              <span class="time-label">Days</span>
+            </div>
+            <div class="time-unit">
+              <span class="time-value" id="hours">14</span>
+              <span class="time-label">Hours</span>
+            </div>
+            <div class="time-unit">
+              <span class="time-value" id="minutes">32</span>
+              <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-unit">
+              <span class="time-value" id="seconds">08</span>
+              <span class="time-label">Seconds</span>
+            </div>
+          </div>
+        </div>
+
         <div class="events-container">
-          <div class="event-card">
-            <span class="material-icons">schedule</span>
-            <h3>Weekly Tournaments</h3>
-            <p>Join our weekly Pokemon tournaments every Saturday at 8 PM UTC</p>
+          <div class="event-card major-event" data-aos="slide-right">
+            <div class="event-badge">MAJOR</div>
+            <div class="event-icon">🏆</div>
+            <div class="event-content">
+              <h3>Aurora Championship 2025</h3>
+              <p>The biggest tournament of the year with amazing prizes!</p>
+              <div class="event-details">
+                <span class="event-date">Dec 15, 2025</span>
+                <span class="event-prize">💰 $500 Prize Pool</span>
+              </div>
+              <button class="register-btn">Register Now</button>
+            </div>
           </div>
-          <div class="event-card">
-            <span class="material-icons">celebration</span>
-            <h3>Special Events</h3>
-            <p>Stay tuned for special themed events and celebrations throughout the month</p>
+
+          <div class="event-card" data-aos="slide-left">
+            <div class="event-icon">⚔️</div>
+            <div class="event-content">
+              <h3>Weekly Battle Royale</h3>
+              <p>Free-for-all battles every Saturday night!</p>
+              <div class="event-details">
+                <span class="event-date">Every Saturday 8PM UTC</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card" data-aos="slide-right">
+            <div class="event-icon">🎭</div>
+            <div class="event-content">
+              <h3>Themed Team Building</h3>
+              <p>Build teams around fun themes and restrictions</p>
+              <div class="event-details">
+                <span class="event-date">Dec 8, 2025</span>
+              </div>
+            </div>
           </div>
         </div>
-        <p class="events-notice">More event announcements will appear here soon. Follow our room for updates!</p>
       </section>
-      
+
+      <!-- Mini Games Section -->
+      <section id="games" aria-labelledby="games-title">
+        <h2 id="games-title">🎮 Mini Games</h2>
+        
+        <div class="games-grid">
+          <!-- Pokemon Guessing Game -->
+          <div class="game-card" data-aos="flip-left">
+            <h3>🔍 Who's That Pokemon?</h3>
+            <div class="game-area">
+              <div class="pokemon-silhouette-game" id="guessPokemon">
+                <div class="mystery-pokemon">❓</div>
+              </div>
+              <div class="game-controls">
+                <input type="text" id="pokemonGuess" placeholder="Enter Pokemon name...">
+                <button onclick="checkGuess()">Guess!</button>
+              </div>
+              <div class="game-score">Score: <span id="guessScore">0</span></div>
+            </div>
+          </div>
+
+          <!-- Type Effectiveness Quiz -->
+          <div class="game-card" data-aos="flip-right">
+            <h3>⚡ Type Effectiveness Quiz</h3>
+            <div class="game-area">
+              <div class="quiz-question" id="typeQuiz">
+                <p>What's super effective against Fire type?</p>
+                <div class="quiz-options">
+                  <button onclick="selectAnswer('water')">Water</button>
+                  <button onclick="selectAnswer('grass')">Grass</button>
+                  <button onclick="selectAnswer('fire')">Fire</button>
+                  <button onclick="selectAnswer('electric')">Electric</button>
+                </div>
+              </div>
+              <div class="game-score">Streak: <span id="quizStreak">0</span></div>
+            </div>
+          </div>
+
+          <!-- Pokemon Memory Game -->
+          <div class="game-card" data-aos="flip-up">
+            <h3>🧠 Memory Challenge</h3>
+            <div class="game-area">
+              <div class="memory-grid" id="memoryGame">
+                <!-- Memory cards will be generated -->
+              </div>
+              <button onclick="startMemoryGame()" class="start-game-btn">Start Game</button>
+              <div class="game-score">Moves: <span id="memoryMoves">0</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rules Section -->
+      <section id="rules" aria-labelledby="rules-title">
+        <h2 id="rules-title">📋 Room Rules & Guidelines</h2>
+        
+        <div class="rules-container">
+          <div class="rule-category">
+            <h3>🤝 General Conduct</h3>
+            <ul>
+              <li>Be respectful and kind to all community members</li>
+              <li>Use appropriate language suitable for all ages</li>
+              <li>Help create a welcoming environment for new trainers</li>
+              <li>Respect different skill levels and play styles</li>
+            </ul>
+          </div>
+
+          <div class="rule-category">
+            <h3>⚔️ Battle Guidelines</h3>
+            <ul>
+              <li>No timer stalling or excessive delays</li>
+              <li>Follow agreed-upon battle formats and rules</li>
+              <li>Good sportsmanship in victory and defeat</li>
+              <li>No hacked or illegal Pokemon in competitive play</li>
+            </ul>
+          </div>
+
+          <div class="rule-category">
+            <h3>🚫 Prohibited Actions</h3>
+            <ul>
+              <li>Spamming messages or excessive caps usage</li>
+              <li>Advertising other servers or unrelated content</li>
+              <li>Harassment, discrimination, or toxic behavior</li>
+              <li>Sharing inappropriate content or links</li>
+            </ul>
+          </div>
+
+          <div class="enforcement-info">
+            <h3>⚖️ Rule Enforcement</h3>
+            <p>Violations may result in warnings, temporary mutes, or permanent bans depending on severity. Our moderators are here to help maintain a positive environment for everyone.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
       <section id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title">Contact & Links</h2>
-        <div class="contact-info">
-          <div class="contact-item">
-            <span class="material-icons">public</span>
-            <div>
-              <h3>Visit Our Room</h3>
-              <p>Join us at <a href="https://dawn.psim.us/aurorazone" target="_blank" rel="noopener noreferrer" aria-label="Join Aurora Zone room on Dawn (opens in new tab)">dawn.psim.us/aurorazone</a></p>
-            </div>
+        <h2 id="contact-title">📞 Contact & Links</h2>
+        
+        <div class="contact-grid">
+          <div class="contact-card primary" data-aos="zoom-in">
+            <div class="contact-icon">🌐</div>
+            <h3>Join Aurora Zone</h3>
+            <p>Visit our room on Dawn Pokemon Showdown</p>
+            <a href="https://dawn.psim.us/aurorazone" target="_blank" rel="noopener noreferrer" class="contact-link">
+              dawn.psim.us/aurorazone
+            </a>
           </div>
-          <div class="contact-item">
-            <span class="material-icons">info</span>
-            <div>
-              <h3>Dawn Pokemon Showdown</h3>
-              <p>Main server: <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown main page (opens in new tab)">dawn.psim.us</a></p>
-            </div>
+
+          <div class="contact-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="contact-icon">💬</div>
+            <h3>Discord Server</h3>
+            <p>Join our Discord for announcements and chat</p>
+            <a href="#" class="contact-link">Coming Soon!</a>
+          </div>
+
+          <div class="contact-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="contact-icon">📧</div>
+            <h3>Contact Staff</h3>
+            <p>Reach out to our moderation team</p>
+            <a href="mailto:aurora@dawn.psim.us" class="contact-link">aurora@dawn.psim.us</a>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <h3>Follow Us</h3>
+          <div class="social-buttons">
+            <a href="#" class="social-btn github" title="GitHub">
+              <span class="material-icons">code</span>
+            </a>
+            <a href="#" class="social-btn twitter" title="Twitter">
+              <span class="material-icons">alternate_email</span>
+            </a>
+            <a href="#" class="social-btn youtube" title="YouTube">
+              <span class="material-icons">play_circle</span>
+            </a>
           </div>
         </div>
       </section>
-      
+
+      <!-- Credits Section -->
       <section id="credits" aria-labelledby="credits-title">
-        <h2 id="credits-title">Credits & Contributors</h2>
-        <div class="credit-box">
-          <h3 class="custom-name">TurboRx</h3>
-          <p class="credit-role-badges">
-            <span class="badge role-dev" role="img" aria-label="Lead Developer">Lead Developer</span>
-            <span class="badge role-maintainer" role="img" aria-label="Project Maintainer">Maintainer</span>
-          </p>
-          <p class="credit-description">Creator and maintainer of the Aurora Zone website and community initiatives.</p>
+        <h2 id="credits-title">🏅 Credits & Contributors</h2>
+        
+        <div class="credits-grid">
+          <div class="credit-box founder">
+            <div class="contributor-avatar">👑</div>
+            <h3 class="custom-name">TurboRx</h3>
+            <p class="credit-role-badges">
+              <span class="badge role-founder">Founder</span>
+              <span class="badge role-dev">Lead Developer</span>
+              <span class="badge role-maintainer">Maintainer</span>
+            </p>
+            <p class="credit-description">Creator and maintainer of the Aurora Zone website and community initiatives. Passionate about creating engaging Pokemon experiences.</p>
+            <div class="contributor-stats">
+              <span>🎯 500+ Commits</span>
+              <span>⚡ 2+ Years Active</span>
+            </div>
+          </div>
+
+          <div class="acknowledgments">
+            <h3>🙏 Special Thanks</h3>
+            <div class="thanks-grid">
+              <div class="thanks-item">
+                <span class="thanks-icon">🌅</span>
+                <div>
+                  <h4>Dawn Pokemon Showdown</h4>
+                  <p>For providing the amazing platform</p>
+                </div>
+              </div>
+              <div class="thanks-item">
+                <span class="thanks-icon">👥</span>
+                <div>
+                  <h4>Aurora Zone Community</h4>
+                  <p>For inspiration, feedback, and support</p>
+                </div>
+              </div>
+              <div class="thanks-item">
+                <span class="thanks-icon">🎨</span>
+                <div>
+                  <h4>Google Material Icons</h4>
+                  <p>For the beautiful iconography</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="acknowledgments">
-          <h3>Special Thanks</h3>
-          <p>Thanks to the Dawn Pokemon Showdown community and all Aurora Zone members who make our room a welcoming place for Pokemon enthusiasts.</p>
+
+        <div class="open-source-info">
+          <h3>💻 Open Source</h3>
+          <p>This website is open source and welcomes contributions from the community. Check out our GitHub repository to get involved!</p>
+          <a href="https://github.com/TurboRx/Aurora-Zone-Webpage" target="_blank" rel="noopener noreferrer" class="github-link">
+            <span class="material-icons">code</span>
+            View on GitHub
+          </a>
         </div>
       </section>
     </main>
 
     <footer role="contentinfo">
-      <p>© <span id="year" aria-live="polite">2025</span> Aurora Zone. All rights reserved. | 
-      <a href="https://github.com/TurboRx/Aurora-Zone-Webpage" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub (opens in new tab)">View Source</a></p>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>🌟 Aurora Zone</h4>
+          <p>The premier Pokemon community on Dawn</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="https://dawn.psim.us/aurorazone">Join Room</a></li>
+            <li><a href="#events" onclick="showSection('events')">Events</a></li>
+            <li><a href="#leaderboard" onclick="showSection('leaderboard')">Rankings</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#rules" onclick="showSection('rules')">Rules</a></li>
+            <li><a href="https://github.com/TurboRx/Aurora-Zone-Webpage">GitHub</a></li>
+            <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year" aria-live="polite">2025</span> Aurora Zone. Made with ❤️ for the Pokemon community.</p>
+      </div>
     </footer>
   </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" onclick="scrollToTop()" title="Back to top">
+    <span class="material-icons">keyboard_arrow_up</span>
+  </button>
+
+  <!-- Notification System -->
+  <div id="notifications" class="notifications-container"></div>
+
   <!-- Link to external JS -->
   <script src="js/scripts.js"></script>
 </body>
