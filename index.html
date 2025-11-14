@@ -7,6 +7,19 @@
   <meta name="keywords" content="Aurora Zone, Dawn, Pokemon Showdown, Pokemon battles, chat room, Pokemon community" />
   <meta name="author" content="TurboRx" />
   
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    connect-src 'none';
+    frame-ancestors 'none';
+    form-action 'none';
+    base-uri 'self';
+  ">
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Aurora Zone - Pokemon Community" />
   <meta property="og:description" content="Official website of the Aurora Zone chat room on Dawn Pokemon Showdown. Join our friendly community!" />
@@ -25,13 +38,13 @@
   <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>" />
   
   <!-- Preload Critical Resources -->
-  <link rel="preload" href="css/styles.css" as="style" />
-  <link rel="preload" href="js/scripts.js" as="script" />
+  <link rel="preload" href="css/styles.min.css" as="style" />
+  <link rel="preload" href="js/scripts.min.js" as="script" />
   
   <!-- Google Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!-- Link to external CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.min.css" />
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -59,26 +72,26 @@
     <!-- Theme Toggle -->
     <div class="theme-toggle" role="region" aria-label="Theme selection">
       <label for="themeMode">Theme:</label>
-      <select id="themeMode" onchange="setTheme(this.value)" aria-describedby="theme-help">
+      <select id="themeMode" aria-label="Select theme" aria-describedby="theme-help">
         <option value="auto">Auto</option>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
       </select>
-      <span class="material-icons" id="themeIcon" aria-hidden="true">brightness_auto</span>
+      <span class="material-icons" id="themeIcon" aria-hidden="true" aria-live="polite">brightness_auto</span>
       <span id="theme-help" class="sr-only">Choose your preferred color theme</span>
     </div>
 
     <nav role="navigation" aria-label="Main navigation">
       <ul>
-        <li><a href="#home" onclick="showSection('home')" aria-current="page" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">home</span> Home</a></li>
-        <li><a href="#rules" onclick="showSection('rules')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">gavel</span> Rules</a></li>
-        <li><a href="#events" onclick="showSection('events')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">event</span> Events</a></li>
-        <li><a href="#contact" onclick="showSection('contact')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">email</span> Contact</a></li>
-        <li><a href="#credits" onclick="showSection('credits')" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">code</span> Credits</a></li>
+        <li><a href="#home" aria-current="page" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">home</span> Home</a></li>
+        <li><a href="#rules" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">gavel</span> Rules</a></li>
+        <li><a href="#events" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">event</span> Events</a></li>
+        <li><a href="#contact" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">email</span> Contact</a></li>
+        <li><a href="#credits" role="button" tabindex="0"><span class="material-icons" aria-hidden="true">code</span> Credits</a></li>
       </ul>
     </nav>
 
-    <main role="main">
+    <main role="main" id="main-content">
       <section id="home" class="active" aria-labelledby="home-title">
         <h2 id="home-title">Welcome to Aurora Zone</h2>
         <p>The Aurora Zone is a vibrant Chat Room in <a href="https://dawn.psim.us/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dawn Pokemon Showdown (opens in new tab)">Dawn</a> where Pokemon enthusiasts gather to battle, discuss strategies, and build friendships. This is our official information website.</p>
@@ -173,6 +186,10 @@
     </footer>
   </div>
   <!-- Link to external JS -->
-  <script src="js/scripts.js"></script>
+  <script src="js/scripts.min.js"></script>
+  <!-- Scroll to Top Button -->
+  <button id="scrollToTopBtn" class="scroll-to-top" title="Go to top" aria-label="Scroll to top of the page">
+    <span class="material-icons">arrow_upward</span>
+  </button>
 </body>
 </html>
