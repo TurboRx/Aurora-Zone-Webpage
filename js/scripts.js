@@ -50,6 +50,32 @@ function showSection(id) {
 }
 
 /**
+ * Setup scroll-to-top button functionality
+ */
+function setupScrollToTop() {
+  try {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.add('show');
+        } else {
+          scrollToTopBtn.classList.remove('show');
+        }
+      });
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  } catch (error) {
+    console.error('Error setting up scroll-to-top button:', error);
+  }
+}
+
+/**
  * Update navigation aria-current attributes
  * @param {string} activeId - The ID of the currently active section
  */
@@ -181,6 +207,35 @@ function announceThemeChange(mode) {
 }
 
 /**
+ * Set up click handlers for navigation and theme selection
+ */
+function setupClickHandlers() {
+  try {
+    // Nav links
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const sectionId = link.getAttribute('href')?.substring(1);
+        if (sectionId) {
+          showSection(sectionId);
+        }
+      });
+    });
+
+    // Theme toggle
+    const themeSelect = document.getElementById('themeMode');
+    if (themeSelect) {
+      themeSelect.addEventListener('change', () => {
+        setTheme(themeSelect.value);
+      });
+    }
+  } catch (error) {
+    console.error('Error setting up click handlers:', error);
+  }
+}
+
+/**
  * Set up keyboard navigation for better accessibility
  */
 function setupKeyboardNavigation() {
@@ -295,12 +350,18 @@ function init() {
     // Initialize theme
     initTheme();
     
+    // Setup click handlers
+    setupClickHandlers();
+
     // Setup keyboard navigation
     setupKeyboardNavigation();
     
     // Setup system theme listener
     setupSystemThemeListener();
     
+    // Setup scroll-to-top button
+    setupScrollToTop();
+
     // Initialize performance monitoring
     initPerformanceMonitoring();
     
