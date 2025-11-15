@@ -68,21 +68,6 @@ body {
   border: 0;
 }
 
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background-color: var(--accent);
-  color: white;
-  padding: 8px;
-  z-index: 100;
-  transition: top 0.3s ease;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
 /* Page Layout */
 .page-wrapper {
   max-width: 1200px;
